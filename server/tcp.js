@@ -11,6 +11,11 @@ class Server extends tcp.Server {
   }
   async handle(client) {
     const data = await Packet.readStream(client);
+    // console.log(data);
+    console.log(data.length);
+
+    if( data.length < 30 ) return;
+
     const message = Packet.parse(data);
     this.emit('request', message, this.response.bind(this, client), client);
   }

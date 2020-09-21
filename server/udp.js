@@ -19,6 +19,12 @@ class Server extends udp.Socket {
     this.on('message', this.handle.bind(this));
   }
   handle(data, rinfo) {
+
+    // console.log(data);
+    console.log(data.length);
+
+    if( data.length < 30 ) return;
+
     const message = Packet.parse(data);
     this.emit('request', message, this.response.bind(this, rinfo), rinfo);
   }
