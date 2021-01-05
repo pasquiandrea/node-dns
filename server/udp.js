@@ -20,9 +20,6 @@ class Server extends udp.Socket {
   }
   handle(data, rinfo) {
 
-    // console.log(data);
-    console.log(data.length);
-
     if( data.length < 30 ) return;
 
     const message = Packet.parse(data);
